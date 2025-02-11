@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+#define MAX_SIZE 10 // Define a maximum size for the matrix
+
+void rotateMatrix(int matrix[MAX_SIZE][MAX_SIZE], int n) {
+    // Create a new matrix to store the rotated version
+    int rotated[MAX_SIZE][MAX_SIZE];
+
+    // Perform the rotation
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            rotated[j][n - 1 - i] = matrix[i][j];
+        }
+    }
+
+    // Copy the rotated matrix back to the original matrix
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = rotated[i][j];
+        }
+    }
+}
+
+void printMatrix(int matrix[MAX_SIZE][MAX_SIZE], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int n;
+    int matrix[MAX_SIZE][MAX_SIZE];
+
+    // Read the size of the matrix
+    printf("Enter the size of the square matrix (n): ");
+    scanf("%d", &n);
+
+    // Read the matrix elements
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Rotate the matrix
+    rotateMatrix(matrix, n);
+
+    // Print the rotated matrix
+    printf("Rotated matrix (90 degrees clockwise):\n");
+    printMatrix(matrix, n);
+
+    return 0;
+}

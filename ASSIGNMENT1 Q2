@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    
+    // Read the number of rows (and seats)
+    printf("Enter the number of rows (and seats): ");
+    scanf("%d", &n);
+    
+    int ages[n][n];
+    
+    // Read the ages of passengers
+    printf("Enter the ages of passengers:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &ages[i][j]);
+        }
+    }
+    
+    int midAgedCount = 0;
+    
+    // Count mid-aged passengers in the main diagonals
+    for (int i = 0; i < n; i++) {
+        // Check the primary diagonal
+        if (ages[i][i] >= 18 && ages[i][i] <= 60) {
+            midAgedCount++;
+        }
+        // Check the secondary diagonal
+        if (ages[i][n - 1 - i] >= 18 && ages[i][n - 1 - i] <= 60) {
+            // Avoid double counting the middle element in case of odd n
+            if (i != n - 1 - i) {
+                midAgedCount++;
+            }
+        }
+    }
+    
+    // Output the count of mid-aged passengers
+    printf("Number of mid-aged passengers seated in the diagonals: %d\n", midAgedCount);
+    
+    return 0;
+}

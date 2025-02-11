@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+void computePostfixSum(int fuel[], int postfixSum[], int m) {
+    postfixSum[m - 1] = fuel[m - 1]; // The last element is the same for both arrays
+
+    // Calculate the postfix sum
+    for (int i = m - 2; i >= 0; i--) {
+        postfixSum[i] = postfixSum[i + 1] + fuel[i];
+    }
+}
+
+int main() {
+    int m;
+
+    // Read the number of delivery points (size of the fuel array)
+    printf("Enter the number of delivery points (m): ");
+    scanf("%d", &m);
+
+    int fuel[m];
+    int postfixSum[m];
+
+    // Read the fuel consumption for each delivery point
+    printf("Enter the fuel consumption for each delivery point:\n");
+    for (int i = 0; i < m; i++) {
+        scanf("%d", &fuel[i]);
+    }
+
+    // Compute the postfix sum
+    computePostfixSum(fuel, postfixSum, m);
+
+    // Output the postfix sum array
+    printf("Postfix Sum of fuel consumption:\n");
+    for (int i = 0; i < m; i++) {
+        printf("%d ", postfixSum[i]);
+    }
+    printf("\n");
+
+    return 0;
+}

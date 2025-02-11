@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    
+    // Read the number of elements
+    printf("Enter the number of elements (n): ");
+    scanf("%d", &n);
+    
+    int data[n];
+    
+    // Read the array elements
+    printf("Enter the elements:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &data[i]);
+    }
+    
+    // Array to hold the frequency of numbers from 1 to 25
+    int frequency[26] = {0}; // Index 0 will be unused
+    
+    // Count the frequency of each number
+    for (int i = 0; i < n; i++) {
+        if (data[i] >= 1 && data[i] <= 25) {
+            frequency[data[i]]++;
+        }
+    }
+    
+    // Print the frequency of each number that occurs
+    printf("Frequency distribution:\n");
+    for (int i = 1; i <= 25; i++) {
+        if (frequency[i] > 0) {
+            printf("%d %d\n", i, frequency[i]);
+        }
+    }
+    
+    return 0;
+}

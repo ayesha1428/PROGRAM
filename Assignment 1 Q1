@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+    int T;
+    
+    // Read the value of T
+    printf("Enter the value of T (number of hours): ");
+    scanf("%d", &T);
+    
+    int E[T], L[T];
+    
+    // Read the number of guests entering at each hour
+    printf("Enter the number of guests entering at each hour:\n");
+    for (int i = 0; i < T; i++) {
+        printf("E[%d]: ", i);
+        scanf("%d", &E[i]);
+    }
+    
+    // Read the number of guests leaving at each hour
+    printf("Enter the number of guests leaving at each hour:\n");
+    for (int i = 0; i < T; i++) {
+        printf("L[%d]: ", i);
+        scanf("%d", &L[i]);
+    }
+    
+    int currentGuests = 0;
+    int maxGuests = 0;
+    
+    // Calculate the maximum number of guests present at any time
+    for (int i = 0; i < T; i++) {
+        currentGuests += E[i]; // Guests entering
+        currentGuests -= L[i]; // Guests leaving
+        
+        // Update maxGuests if currentGuests is greater
+        if (currentGuests > maxGuests) {
+            maxGuests = currentGuests;
+        }
+    }
+    // Output the maximum number of guests
+    printf("Maximum number of guests on cruise at an instance: %d\n", maxGuests);
+    
+    return 0;
+}

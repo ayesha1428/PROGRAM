@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_DIGITS 10 // Digits from 0 to 9
+
+void findDistinctDigits(int arr[], int k, bool digits[]) {
+    for (int i = 0; i < k; i++) {
+        int num = arr[i];
+        
+        // Extract digits from the number
+        while (num > 0) {
+            int digit = num % 10; // Get the last digit
+            digits[digit] = true;  // Mark this digit as found
+            num /= 10;             // Remove the last digit
+        }
+    }
+}
+
+int main() {
+    int k;
+
+    // Read the number of integers
+    printf("Enter the number of integers (k): ");
+    scanf("%d", &k);
+
+    int arr[k];
+
+    // Read the integers
+    printf("Enter the integers:\n");
+    for (int i = 0; i < k; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    bool digits[MAX_DIGITS] = {false}; // Array to track found digits
+
+    // Find distinct digits
+    findDistinctDigits(arr, k, digits);
+
+    // Output the sorted list of distinct digits
+    printf("Distinct digits present in the array:\n");
+    for (int i = 0; i < MAX_DIGITS; i++) {
+        if (digits[i]) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}

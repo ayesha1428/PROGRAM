@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100 // Define a maximum size for the matrix
+
+void printSpiral(int mat[MAX_SIZE][MAX_SIZE], int m, int n) {
+    int top = 0, bottom = m - 1;
+    int left = 0, right = n - 1;
+
+    while (top <= bottom && left <= right) {
+        // Print the top row
+        for (int i = left; i <= right; i++) {
+            printf("%d ", mat[top][i]);
+        }
+        top++;
+
+        // Print the right column
+        for (int i = top; i <= bottom; i++) {
+            printf("%d ", mat[i][right]);
+        }
+        right--;
+
+        // Print the bottom row if still in bounds
+        if (top <= bottom) {
+            for (int i = right; i >= left; i--) {
+                printf("%d ", mat[bottom][i]);
+            }
+            bottom--;
+        }
+
+        // Print the left column if still in bounds
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--) {
+                printf("%d ", mat[i][left]);
+            }
+            left++;
+        }
+    }
+}
+
+int main() {
+    int m, n;
+    int mat[MAX_SIZE][MAX_SIZE];
+
+    // Read the dimensions of the matrix
+    printf("Enter the number of rows (m): ");
+    scanf("%d", &m);
+    printf("Enter the number of columns (n): ");
+    scanf("%d", &n);
+
+    // Read the matrix elements
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    // Print the matrix in spiral form
+    printf("Spiral order of the matrix:\n");
+    printSpiral(mat, m, n);
+
+    return 0;
+}

@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+void computePrefixSum(int sales[], int prefixSum[], int n) {
+    prefixSum[0] = sales[0]; // The first element is the same for both arrays
+
+    // Calculate the prefix sum
+    for (int i = 1; i < n; i++) {
+        prefixSum[i] = prefixSum[i - 1] + sales[i];
+    }
+}
+
+int main() {
+    int n;
+
+    // Read the number of hours (size of the sales array)
+    printf("Enter the number of hours (n): ");
+    scanf("%d", &n);
+
+    int sales[n];
+    int prefixSum[n];
+
+    // Read the sales amounts for each hour
+    printf("Enter the sales amounts for each hour:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &sales[i]);
+    }
+
+    // Compute the prefix sum
+    computePrefixSum(sales, prefixSum, n);
+
+    // Output the prefix sum array
+    printf("Prefix Sum of sales amounts:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", prefixSum[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
